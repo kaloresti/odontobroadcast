@@ -3,7 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      <div *ngIf="!!user">
+         {{ user.name }} 
+      </div>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,14 +17,19 @@
 
       <ion-spinner *ngIf="loading"></ion-spinner>
 
-      <div *ngIf="!!user">
-        <h2>Name: {{ user.name }}</h2>
-        <p>
-          User id: {{ user.id }} <br>
-          User email: {{ user.email }}
-        </p>
-      </div>
       
+      <ion-calendar #calendar (onDaySelect)="onDaySelect($event)"></ion-calendar>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+        Meus pacientes
+      </ion-card-header>
+      <ion-card-content>
+        
+      </ion-card-content>
+    </ion-card>
 </ion-content>
+
+

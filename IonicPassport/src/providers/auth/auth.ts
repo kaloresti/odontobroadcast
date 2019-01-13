@@ -48,7 +48,7 @@ export class AuthProvider {
 
   storeCredentials (response: any) {
     let expired_at = (response.expires_in * 1000) + Date.now();
-
+    console.log("Token expira em: "+expired_at);
     this.storage.set('auth', {
       access_token: response.access_token,
       refresh_token: response.refresh_token,

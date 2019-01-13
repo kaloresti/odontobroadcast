@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { CalendarModule } from 'ionic3-calendar-en';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -23,6 +24,7 @@ import { UserProvider } from '../providers/user/user';
     BrowserModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    CalendarModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
