@@ -33,7 +33,7 @@
           </ion-item>
           <button ion-button color="secondary" icon-left full large (click)="doLogin(formLogin)">
               <ion-icon name="key"></ion-icon>
-              Login Normal
+              Login
           </button>
           <br> <br>
           <button ion-button icon-left full>
@@ -57,10 +57,13 @@
             <ion-input type="email" placeholder="Email" [(ngModel)]="formRegister.email"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="CPF" [(ngModel)]="formRegister.email"></ion-input>
+              <ion-input type="text" placeholder="CPF" [(ngModel)]="formRegister.cpf"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="UF" [(ngModel)]="formRegister.cro_uf"></ion-input>
             </ion-item>
           <ion-item>
-                <ion-input type="text" placeholder="CRO" [(ngModel)]="formRegister.email"></ion-input>
+                <ion-input type="text" placeholder="CRO" [(ngModel)]="formRegister.cro"></ion-input>
               </ion-item>
           <ion-item>
             <ion-input type="password" placeholder="Password" [(ngModel)]="formRegister.password"></ion-input>

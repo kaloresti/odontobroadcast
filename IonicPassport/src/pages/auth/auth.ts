@@ -23,6 +23,9 @@ export class AuthPage {
     email: '',
     password: '',
     password_confirmation: '',
+    cro: '',
+    cro_uf: '',
+    cpr: ''
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -97,7 +100,8 @@ export class AuthPage {
           let decodedErrors: any = decodeLaravelErrors(err)
           alert.setMessage(decodedErrors.errors.join('<br>'));
         } else {
-          alert.setMessage('Unknow error on register');
+          let decodedErrors: any = decodeLaravelErrors(err)
+          alert.setMessage(decodedErrors.errors.join('<br>'));
         }
         alert.present();
       })
