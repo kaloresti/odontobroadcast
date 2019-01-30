@@ -4,11 +4,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { CalendarModule } from 'ionic3-calendar-en';
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { RecoverPage } from '../pages/recover/recover';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,27 +20,30 @@ import { UserProvider } from '../providers/user/user';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    RecoverPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
     CalendarModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    RecoverPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    UserProvider
+    UserProvider,
+    Facebook
   ]
 })
 export class AppModule {}

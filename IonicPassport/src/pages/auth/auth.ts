@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, MenuController } from 'ionic-angular';
-
 import { AuthProvider } from '../../providers/auth/auth';
 import { decodeLaravelErrors } from '../../functions/Helpers';
 import { HomePage } from '../home/home';
+import { RecoverPage } from '../recover/recover';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @IonicPage()
 @Component({
@@ -27,15 +28,16 @@ export class AuthPage {
     cro_uf: '',
     cpf: '',
     especialidade: '',
-  }
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private menuCtrl: MenuController,
-    private authService: AuthProvider
+    private authService: AuthProvider,
+    public fb: Facebook
   ) {
-    this.loading = this.loadingCtrl.create({content: 'Please wait ...'});
+    this.loading = this.loadingCtrl.create({content: 'Aguarde ...'});
   }
 
   ionViewDidLoad() {
@@ -112,5 +114,85 @@ export class AuthPage {
   {
     return true;
   }
+
+  doLoginFacebook()
+  {
+    this.loading.present();
+    console.log("chamei a função");
+      // Login with permissions
+      this.fb.login(['public_profile', 'user_photos', 'email', 'user_birthday'])
+      .then( (res: FacebookLoginResponse) => {
+
+          // The connection was successful
+          if(res.status == "connected") {
+
+              // Get user ID and Token
+              var fb_id = res.authResponse.userID;
+              var fb_token = res.authResponse.accessToken;
+
+              // Get user infos from the API
+              this.fb.api("/me?fields=name,gender,birthday,email", []).then((user) => {
+
+                  // Get the connected user details
+                  this.formRegister.name = user.name;
+                  this.formRegister.email = user.email;
+                  this.formRegister.password = user.email;
+                  this.formRegister.password_confirmation = user.email;
+                  this.formRegister.cro = 'N/A'
+                  this.formRegister.cro_uf = 'N/A'
+                  this.formRegister.cpf = 'N/A'
+                  this.formRegister.especialidade = 'N/A'  
+                 
+                  this.formLogin.email = user.email;
+                  this.formLogin.password = user.email;
+
+                  this.authService.verifyExistUser(this.formRegister)
+                    .then((response: any) => {
+                      this.loading.dismiss();
+                      console.log(response);
+                      console.log(typeof(response.exist))
+                      if(response.exist == true)
+                      {
+                        console.log("Tentando logar no sistema!!!!");
+                        this.doLogin(this.formLogin);
+                      } else{
+                        console.log("Tentando cadastrar um novo usário!!!!");
+                        this.doRegister();
+                      }
+                    })
+                    .catch((err: any) => {
+                      this.loading.dismiss();
+                      let alert = this.alertCtrl.create({ title: 'Error', buttons: ['Ok']});
+                      if (err.status == 422) {
+                        let decodedErrors: any = decodeLaravelErrors(err)
+                        alert.setMessage(decodedErrors.errors.join('<br>'));
+                      } else {
+                        let decodedErrors: any = decodeLaravelErrors(err)
+                        alert.setMessage(decodedErrors.errors.join('<br>'));
+                      }
+                      alert.present();
+                    })
+                  // => Open user session and redirect to the next page
+
+              });
+
+          } 
+          // An error occurred while loging-in
+          else {
+
+              console.log("An error occurred...");
+
+          }
+
+      })
+      .catch((e) => {
+          console.log('Error logging into Facebook', e);
+      });
+  }
+
+  openRecoverPage(): void {
+    this.navCtrl.push(RecoverPage);
+  }
+ 
 
 }

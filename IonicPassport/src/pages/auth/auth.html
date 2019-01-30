@@ -36,7 +36,7 @@
               Login
           </button>
           <br> <br>
-          <button ion-button icon-left full>
+          <button ion-button icon-left full (click)="doLoginFacebook()">
               <ion-icon name="logo-facebook"></ion-icon>
                 Login com Facebook
           </button>
@@ -65,34 +65,22 @@
               <ion-list>
                   <ion-item>
                     <ion-label>UF-CRO</ion-label>
-                    <ion-select [(ngModel)]="formRegister.cro_uf" cancelText="Nah" okText="Okay!">
-                      <ion-option value="bacon" selected="true">Bacon</ion-option>
-                      <ion-option value="olives">Black Olives</ion-option>
-                      <ion-option value="xcheese" selected="true">Extra Cheese</ion-option>
-                      <ion-option value="peppers">Green Peppers</ion-option>
-                      <ion-option value="mushrooms">Mushrooms</ion-option>
-                      <ion-option value="onions">Onions</ion-option>
-                      <ion-option value="pepperoni">Pepperoni</ion-option>
-                      <ion-option value="pineapple">Pineapple</ion-option>
-                      <ion-option value="sausage">Sausage</ion-option>
-                      <ion-option value="Spinach">Spinach</ion-option>
+                    <ion-select [(ngModel)]="formRegister.cro_uf" cancelText="cancelar" okText="OK">
+                        <ion-option value="N/A" selected="true">não escolhido</ion-option>
+                      <ion-option value="PA">Pará</ion-option>
+                      <ion-option value="SP">São Paulo</ion-option>
+                      
                     </ion-select>
                   </ion-item>
                 </ion-list>
                 <ion-list>
                     <ion-item>
                       <ion-label>Especialidade</ion-label>
-                      <ion-select [(ngModel)]="formRegister.especialidade" multiple="true" cancelText="Nah" okText="Okay!">
-                        <ion-option value="bacon" selected="true">Bacon</ion-option>
-                        <ion-option value="olives">Black Olives</ion-option>
-                        <ion-option value="xcheese" selected="true">Extra Cheese</ion-option>
-                        <ion-option value="peppers">Green Peppers</ion-option>
-                        <ion-option value="mushrooms">Mushrooms</ion-option>
-                        <ion-option value="onions">Onions</ion-option>
-                        <ion-option value="pepperoni">Pepperoni</ion-option>
-                        <ion-option value="pineapple">Pineapple</ion-option>
-                        <ion-option value="sausage">Sausage</ion-option>
-                        <ion-option value="Spinach">Spinach</ion-option>
+                      <ion-select [(ngModel)]="formRegister.especialidade" multiple="true" cancelText="cancelar" okText="OK">
+                          <ion-option value="N/A" selected="true">não escolhido</ion-option>
+                        <ion-option value="bacon" selected="true">Clínico Geral</ion-option>
+                        <ion-option value="olives">Cirugião</ion-option>
+                        
                       </ion-select>
                     </ion-item>
                   </ion-list>
@@ -107,14 +95,14 @@
               Cadastrar
           </button>
           <br> <br>
-          <button ion-button icon-left full>
+          <!-- <button ion-button icon-left full>
               <ion-icon name="logo-facebook"></ion-icon>
                 cadastrar com Facebook
           </button>
           <button ion-button color="danger" icon-left full>
                 <ion-icon name="mail"></ion-icon>
                 cadastrar com Google
-          </button>
+          </button> -->
           <br> <br>
         </div>
       </div>
@@ -123,7 +111,7 @@
 
   <ion-card>
     <ion-card-content>
-        <button ion-button color="default" icon-left full>
+        <button (click)="openRecoverPage()" ion-button color="default" icon-left full>
             <ion-icon name="mail"></ion-icon>
             recuperar ou trocar senha
       </button>

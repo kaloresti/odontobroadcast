@@ -42,6 +42,11 @@ export class AuthProvider {
     return this.http.post(`${Service.apiUrl}/register`, user).toPromise();
   }
 
+  verifyExistUser (user: any) 
+  {
+    return this.http.post(`${Service.apiUrl}/verifyExistUser`, user).toPromise();
+  }
+
   removeCredentials () {
     this.storage.remove('auth');
   }
