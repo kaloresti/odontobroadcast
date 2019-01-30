@@ -25,7 +25,8 @@ export class AuthPage {
     password_confirmation: '',
     cro: '',
     cro_uf: '',
-    cpr: ''
+    cpf: '',
+    especialidade: '',
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams,

@@ -51,25 +51,56 @@
 
         <div *ngSwitchCase="'register'" class="form">
           <ion-item>
-            <ion-input type="string" placeholder="Name" [(ngModel)]="formRegister.name"></ion-input>
+            <ion-input type="string" placeholder="Nome completo" [(ngModel)]="formRegister.name"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="email" placeholder="Email" [(ngModel)]="formRegister.email"></ion-input>
+            <ion-input type="email" placeholder="E-mail principal" [(ngModel)]="formRegister.email"></ion-input>
           </ion-item>
           <ion-item>
               <ion-input type="text" placeholder="CPF" [(ngModel)]="formRegister.cpf"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input type="text" placeholder="UF" [(ngModel)]="formRegister.cro_uf"></ion-input>
-            </ion-item>
-          <ion-item>
-                <ion-input type="text" placeholder="CRO" [(ngModel)]="formRegister.cro"></ion-input>
+                <ion-input type="text" placeholder="CRO (somente numeros)" [(ngModel)]="formRegister.cro"></ion-input>
               </ion-item>
+              <ion-list>
+                  <ion-item>
+                    <ion-label>UF-CRO</ion-label>
+                    <ion-select [(ngModel)]="formRegister.cro_uf" cancelText="Nah" okText="Okay!">
+                      <ion-option value="bacon" selected="true">Bacon</ion-option>
+                      <ion-option value="olives">Black Olives</ion-option>
+                      <ion-option value="xcheese" selected="true">Extra Cheese</ion-option>
+                      <ion-option value="peppers">Green Peppers</ion-option>
+                      <ion-option value="mushrooms">Mushrooms</ion-option>
+                      <ion-option value="onions">Onions</ion-option>
+                      <ion-option value="pepperoni">Pepperoni</ion-option>
+                      <ion-option value="pineapple">Pineapple</ion-option>
+                      <ion-option value="sausage">Sausage</ion-option>
+                      <ion-option value="Spinach">Spinach</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+                <ion-list>
+                    <ion-item>
+                      <ion-label>Especialidade</ion-label>
+                      <ion-select [(ngModel)]="formRegister.especialidade" multiple="true" cancelText="Nah" okText="Okay!">
+                        <ion-option value="bacon" selected="true">Bacon</ion-option>
+                        <ion-option value="olives">Black Olives</ion-option>
+                        <ion-option value="xcheese" selected="true">Extra Cheese</ion-option>
+                        <ion-option value="peppers">Green Peppers</ion-option>
+                        <ion-option value="mushrooms">Mushrooms</ion-option>
+                        <ion-option value="onions">Onions</ion-option>
+                        <ion-option value="pepperoni">Pepperoni</ion-option>
+                        <ion-option value="pineapple">Pineapple</ion-option>
+                        <ion-option value="sausage">Sausage</ion-option>
+                        <ion-option value="Spinach">Spinach</ion-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
           <ion-item>
-            <ion-input type="password" placeholder="Password" [(ngModel)]="formRegister.password"></ion-input>
+            <ion-input type="password" placeholder="Digite uma senha" [(ngModel)]="formRegister.password"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="password" placeholder="Confirm password" [(ngModel)]="formRegister.password_confirmation"></ion-input>
+            <ion-input type="password" placeholder="Confirme a senha digitada" [(ngModel)]="formRegister.password_confirmation"></ion-input>
           </ion-item>
           <button ion-button color="secondary" icon-left full large (click)="doRegister()">
               <ion-icon name="person-add"></ion-icon>
