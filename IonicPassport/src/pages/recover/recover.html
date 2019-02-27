@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>recover</ion-title>
+    <ion-title>Recuperar dados</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div *ngSwitchCase="'recover'" class="form">
+    <ion-item>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="formRecover.email"></ion-input>
+    </ion-item>
+    <button ion-button color="secondary" icon-left full large (click)="doRecover(formRecover)">
+        <ion-icon name="key"></ion-icon>
+        recuperar dados de acesso
+    </button>
+  </div>
 </ion-content>
