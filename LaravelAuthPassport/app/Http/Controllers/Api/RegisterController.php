@@ -53,4 +53,28 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function requestCodePass(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|string|email|max:255'
+        ]);
+
+        $exist = false; 
+        $user = (object) DB::table('users')->where('email', trim($request->email))->get();
+        //var_dump($user);
+        if(isset($user[0]->id)) {
+            return response()->json([
+                'success' => true,
+                'message' => '',
+                'data' => $user
+            ]);
+        }
+
+        return response()->json([
+            'error' => true,
+            'message' => "usuário não cadastrado"
+        ]);
+            
+    }
+
 }
