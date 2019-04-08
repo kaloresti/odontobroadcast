@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 use App\User;
+use App\Dentista;
 
 class RegisterController extends Controller
 {
@@ -27,14 +28,24 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'cro' => $request->name,
+            'cro' => $request->cro,
             'cro_uf' => $request->cro_uf,
-            'cpf' => $request->email,
+            'cpf' => $request->cpf,
             'especialidade' => is_array($request->especialidade) ? implode(';', $request->especialidade) : $request->especialidade,
         ]);
 
+        $dentista = Dentista::create([
+            'nome' => $request->name, 
+            'cro' => $request->name,
+            'cro_uf' => $request->cro_uf,
+            'dt_nascimento' => '2018-13-12', 
+            'rg' => '0000000', 
+            'cpf' => $request->cpf, 
+            'user_id' => $user->id
+        ]);
+
         return response()->json([
-            'success' => 'Obrigado por se cadastrar no ODONTO-BROADCAST !!'
+            'success' => 'Obrigado por se cadastrar no ODONTO BROADCAST !!'
         ]);
     }
 

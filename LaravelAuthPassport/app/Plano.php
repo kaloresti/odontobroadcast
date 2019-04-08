@@ -5,11 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Dentista extends Model
+class Plano extends Model
 {
-    use Notifiable;
-
-    protected $table = "dentista";
+    protected $table = "plano";
 
     /**
      * The attributes that are mass assignable.
@@ -18,11 +16,5 @@ class Dentista extends Model
      */
     protected $fillable = [
         'nome', 
-        'cro_uf', 
-        'cro', 
-        'dt_nascimento', 
-        'rg', 
-        'cpf', 
-        'user_id'
     ];
 }
