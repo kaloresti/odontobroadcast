@@ -5,6 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { AgendaPage } from '../pages/agenda/agenda';
+import { PacientePage } from '../pages/paciente/paciente';
+import { ConsultorioPage } from '../pages/consultorio/consultorio';
+import { ConsultorioCreatePage } from '../pages/consultorio-create/consultorio-create';
+import { AuxiliaresPage } from '../pages/auxiliares/auxiliares';
 import { AuthProvider } from '../providers/auth/auth';
 
 @Component({
@@ -15,7 +20,7 @@ export class MyApp {
 
   rootPage: any = 'AuthPage';
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon:any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
       private menuCtrl: MenuController,
@@ -25,8 +30,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Minha Agenda', component: HomePage , icon: 'calendar'},
+      { title: 'Meus Pacientes', component: PacientePage, icon: 'contacts'},
+      { title: 'Meus Consultórios', component: ConsultorioPage, icon: 'medkit'},
+      { title: 'Meus Auxiliares', component: AuxiliaresPage, icon: 'person'}
+      //{ title: 'List', component: ListPage }
     ];
 
   }

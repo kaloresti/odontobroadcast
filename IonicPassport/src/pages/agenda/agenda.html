@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar color="inverse">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <div *ngIf="!!user">
+           {{ user.name }} 
+        </div>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-card box-shadow>
+        
+        <ion-list>
+          <ion-item>
+            <ion-label>Paciente</ion-label>
+            <ion-select [(ngModel)]="formRegister.paciente_id" cancelText="cancelar" okText="OK">
+              <ion-option *ngFor="let paciente of pacientes" value="{{paciente.id}}">{{paciente.nome}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-item>
+              <ion-label>Data</ion-label>
+              <ion-datetime  [(ngModel)]="formRegister.dt_inicio"  displayFormat="YYYY/MM/DD" min="2005" max="2020" value="2008-09-02"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>De:</ion-label>
+              <ion-datetime [(ngModel)]="formRegister.hr_inicio" displayFormat="HH:mm"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>Até:</ion-label>
+              <ion-datetime [(ngModel)]="formRegister.hr_fim" displayFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-list>
+        
+        <ion-list>
+          <ion-item>
+            <ion-label>Consultório</ion-label>
+            <ion-select [(ngModel)]="formRegister.consultorio_id" cancelText="cancelar" okText="OK">              
+                      <ion-option *ngFor="let consultorio of consultorios" value="{{consultorio.id}}">{{consultorio.nome}}</ion-option>                    
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button color="success" icon-left full large (click)="agendar()">
+            <ion-icon name="calendar"></ion-icon>
+            Agendar
+        </button>
+
+      </ion-card>
+  </ion-content>
+  
+  
+  

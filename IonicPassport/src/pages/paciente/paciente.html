@@ -1,0 +1,53 @@
+<!--
+  Generated template for the PacientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="inverse">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        <div *ngIf="!!user">
+           {{ user.name }} 
+        </div>
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+      <ion-card-content>
+        <button (click)="openNovoPaciente()" ion-button color="default" icon-left full>
+          <ion-icon name="person"></ion-icon>
+          novo paciente
+      </button>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+          meus pacientes
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item-sliding>
+                <ion-item *ngFor="let paciente of pacientes">
+                  <ion-avatar item-left>
+                    <img src="https://www.atlassian.com/dam/jcr:13a574c1-390b-4bfb-956b-6b6d114bf98c/max-rehkopf.png">
+                  </ion-avatar>
+                  <ion-label>
+                      {{paciente.nome}}
+                      <button (click)="abrirEdicao()" ion-button color="primary" icon-left full>
+                        <ion-icon name="create"></ion-icon>  
+                      </button>
+                      <button (click)="excluir(paciente.id)" ion-button color="danger" icon-left full>
+                        <ion-icon name="trash"></ion-icon>  
+                      </button>
+                  </ion-label>
+                </ion-item>
+            </ion-item-sliding>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

@@ -1,17 +1,30 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar color="dark">
-      <ion-title>Menu</ion-title>
+      <ion-title>Odonto broadcast</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+          <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
-
-      <button menuClose ion-item (click)="logout()">Logout</button>
+      <!-- <button menuClose ion-item (click)="openAgenda()">
+          <ion-icon name="calendar"></ion-icon> Minha agenda
+      </button>
+      <button menuClose ion-item (click)="openPacientes()">
+          <ion-icon name="contacts"></ion-icon> Pacientes
+      </button>
+      <button menuClose ion-item (click)="openConsultorios()">
+          <ion-icon name="home"></ion-icon> Consultorios
+      </button>
+      <button menuClose ion-item (click)="openAuxiliares()">
+          <ion-icon name="person"></ion-icon> Auxiliares
+      </button> -->
+      <button menuClose ion-item (click)="logout()">
+          <ion-icon name="log-out"></ion-icon> Sair
+      </button>
     </ion-list>
   </ion-content>
 

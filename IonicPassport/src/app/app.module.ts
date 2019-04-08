@@ -10,6 +10,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { RecoverPage } from '../pages/recover/recover';
+import { AgendaPage } from '../pages/agenda/agenda';
+import { PacientePage } from '../pages/paciente/paciente';
+import { ConsultorioPage } from '../pages/consultorio/consultorio';
+import { ConsultorioCreatePage } from '../pages/consultorio-create/consultorio-create';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +25,11 @@ import { UserProvider } from '../providers/user/user';
     MyApp,
     HomePage,
     ListPage,
-    RecoverPage
+    RecoverPage,
+    AgendaPage,
+    PacientePage,
+    ConsultorioPage,
+    ConsultorioCreatePage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,11 @@ import { UserProvider } from '../providers/user/user';
     MyApp,
     HomePage,
     ListPage,
-    RecoverPage
+    RecoverPage,
+    AgendaPage,
+    PacientePage,
+    ConsultorioPage,
+    ConsultorioCreatePage
   ],
   providers: [
     StatusBar,

@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar color="inverse">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>  
     </button>
     <ion-title>
       <div *ngIf="!!user">
-         {{ user.name }} 
+          {{ user.name }}
       </div>
     </ion-title>
   </ion-navbar>
@@ -14,20 +14,56 @@
 <ion-content padding>
   <ion-card box-shadow>
     <ion-card-content text-center>
-
       <ion-spinner *ngIf="loading"></ion-spinner>
-
-      
       <ion-calendar #calendar (onDaySelect)="onDaySelect($event)"></ion-calendar>
     </ion-card-content>
   </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Opções
+    </ion-card-header>
+    <ion-card-content>
+      <button (click)="openNovoAgendamento()" ion-button color="default" icon-left full>
+        <ion-icon name="calendar"></ion-icon>
+        novo agendamento
+    </button>
+    </ion-card-content>
+  </ion-card>
+  
 
   <ion-card>
       <ion-card-header>
-        Meus pacientes
+        Pacientes agendados
       </ion-card-header>
       <ion-card-content>
-        
+          <ion-item-sliding>
+              <ion-item *ngFor="let agenda of agendamentos">
+                  <ion-avatar item-left>
+                    <img src="https://www.atlassian.com/dam/jcr:13a574c1-390b-4bfb-956b-6b6d114bf98c/max-rehkopf.png">
+                  </ion-avatar>
+                  <ion-label>
+                      {{agenda.paciente}}
+                      <p>Data: {{agenda.data}}</p>
+                      <p>De: {{agenda.hora_inicio}}</p>
+                      <p>Até: {{agenda.hora_final}}</p>
+                      <p>Consultório: {{agenda.consultorio}}</p>
+                      <button (click)="abrirEdicao()" ion-button color="primary" icon-left full>
+                        <ion-icon name="create"></ion-icon>  
+                      </button>
+                      <button (click)="desmarcar(agenda.id)" ion-button color="danger" icon-left full>
+                        <ion-icon name="trash"></ion-icon>  
+                      </button>
+                  </ion-label>
+                </ion-item>
+              <!-- <ion-item-options side="start">
+                <ion-item-option (click)="favorite(item)">Favorite</ion-item-option>
+                <ion-item-option color="danger" (click)="share(item)">Share</ion-item-option>
+              </ion-item-options>
+          
+              <ion-item-options side="end">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options> -->
+          </ion-item-sliding>
       </ion-card-content>
     </ion-card>
 </ion-content>
