@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 use App\Paciente;
+use App\Dentista;
 use App\PacienteHasPlano;
 use App\DentistaHasPaciente;
 
@@ -28,13 +29,17 @@ class PacienteController extends Controller
     {
         //$dentista = (object) DB::table('dentista')->where('user_id', $idUser)->get();
         $pacientes = (object) DB::table('paciente')
-            ->select('paciente.*')
+            ->select('paciente.*',
+            DB::raw('DATE_FORMAT(paciente.created_at, "%d/%m/%Y") as data_cadastro'),
+            DB::raw('DATE_FORMAT(paciente.dt_nascimento, "%d/%m/%Y") as data_nascimento'))
+            
             ->join('dentista_has_paciente', 'dentista_has_paciente.paciente_id' , '=', 'paciente.id')
             //->join('dentista_has_paciente', 'dentista_has_paciente.dentista_id', '=', 'dentista.id')
             ->join('dentista', 'dentista_has_paciente.dentista_id', '=', 'dentista.id')
             ->where('dentista.user_id', $idUser)
+            ->orderBy('paciente.created_at', 'desc')
             ->get();
-                
+ 
         return response()->json([
             'data' => $pacientes
         ]);
@@ -63,20 +68,22 @@ class PacienteController extends Controller
                 "longitude" => $data->longitude,
                 "nome" => $data->nome,
                 "dt_nascimento" => $data->dt_nascimento,
-                "rg" => "0000000",
+                "rg" => $data->rg,
                 "celular" => $data->celular,
                 "cpf" => $data->cpf
             ]);
     
             if($createPaciente->id)
             {
+                $dentista = Dentista::where('user_id',$data->user_id)->get()->first();
+
                 $createPacienteHasPlano = PacienteHasPlano::create([
                     "paciente_id" => $createPaciente->id,
                     "plano_id" => $data->plano_id
                 ]);
     
                 $createDentistaHasPaciente = DentistaHasPaciente::create([
-                    "dentista_id" => $data->dentista_id,
+                    "dentista_id" => $dentista->id,
                     "paciente_id" => $createPaciente->id
                 ]);
     

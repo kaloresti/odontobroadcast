@@ -39,6 +39,8 @@
                   </ion-avatar>
                   <ion-label>
                       {{consultorio.nome}}
+                      <p>Data: {{consultorio.data_cadastro}}</p>
+                      <p>{{consultorio.uf}} - {{consultorio.cidade}} - {{consultorio.bairro}} - {{consultorio.logradouro}}</p>
                       <button (click)="abrirEdicao()" ion-button color="primary" icon-left full>
                         <ion-icon name="create"></ion-icon>  
                       </button>

@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { UserProvider } from '../../providers/user/user';
+
+import { HomePage } from '../../pages/home/home';
 /**
  * Generated class for the AgendaPage page.
  *
@@ -26,6 +28,7 @@ export class AgendaPage {
     dt_inicio: '',
     dt_fim: '',
     consultorio_id: '',
+    user_id: 0
   };
   consultorios: any;
   pacientes: any;
@@ -45,8 +48,7 @@ export class AgendaPage {
 
   ionViewDidLoad() {
     this.getUser();
-    this.getPacientes();
-    this.getConsultorios();
+    
     
   }
 
@@ -57,6 +59,8 @@ export class AgendaPage {
       .then((response: any) => {
         this.loading = false;
         this.user = response;
+        this.getPacientes(this.user.id);
+        this.getConsultorios(this.user.id);
       })
       .catch(err => {
         this.loading = false;
@@ -65,30 +69,31 @@ export class AgendaPage {
       })
   }
 
-  getPacientes () 
+  getPacientes(user_id)
   {
     this.loading = true;
-    this.userService.getPacientes()
+    this.userService.getPacientesPorDentista(user_id)
       .then((response: any) => {
         this.loading = false;
+        console.log("Pacientes", response.data);
         this.pacientes = response.data;
-        console.log(this.pacientes);
+        
       })
       .catch(err => {
         this.loading = false;
-        let alert = this.alertCtrl.create({ title: 'Error', message: 'Error on get user info', buttons: ['Ok'] });
+        let alert = this.alertCtrl.create({ title: 'Error', message: 'Error on get pacientes info', buttons: ['Ok'] });
         alert.present();
       })
+    
   }
 
-  getConsultorios () 
+  getConsultorios(idUser)
   {
     this.loading = true;
-    this.userService.getConsultorios()
+    this.userService.getConsultoriosPorDentista(idUser)
       .then((response: any) => {
         this.loading = false;
         this.consultorios = response.data;
-        console.log(this.consultorios);
       })
       .catch(err => {
         this.loading = false;
@@ -100,10 +105,12 @@ export class AgendaPage {
   agendar()
   {
     //this.loading.present();
+    this.formRegister.user_id = this.user.id
+    console.log("FORM REGISTER", this.formRegister);
     this.userService.agendar(this.formRegister)
       .then((response: any) => {
         let alert = this.alertCtrl.create({ title: 'Success', message: response.message, buttons: ['Ok'] });
-        this.navCtrl.pop();
+        this.navCtrl.setRoot(HomePage);
         console.log(response)
       })
       .catch((err: any) => {

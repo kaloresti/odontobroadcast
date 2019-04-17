@@ -41,3 +41,6 @@ Route::get('/pacientes/list/{idDentista}', 'Api\PacienteController@list');
 Route::post('/pacientes/store', 'Api\PacienteController@store');
 
 Route::get('/planos/listall', 'Api\PlanoController@getAll');
+
+Route::get('/assistentes/listfordentista/{idDentista}', 'Api\AssistenteController@getForDentista');
+Route::post('/assistentes/store', 'Api\AssistenteController@store');

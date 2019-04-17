@@ -7,11 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 use App\Agenda;
+use App\Dentista;
 
 class AgendaController extends Controller
 {
     public function store(Request $request) 
     {
+        //$data = (object)$request->all();
+
         $this->validate($request, [
             'dt_inicio' => 'required', 
             //'dt_fim' => 'required', 
@@ -21,12 +24,12 @@ class AgendaController extends Controller
             //'status' => 'required', 
             //'assistente_id' => 'required'
         ]);
-
+        $consultaDentista = Dentista::where('user_id',$request->user_id)->get()->first();
         $agenda = Agenda::create([
             'dt_inicio' => $request->dt_inicio.' '.$request->hr_inicio, 
             'dt_fim' => $request->dt_inicio.' '.$request->hr_fim,
             'paciente_id' => $request->paciente_id, 
-            'dentista_id' => 1,
+            'dentista_id' => $consultaDentista->id,
             'consultorio_id' => $request->consultorio_id, 
             'status' => 'agendado',
             'assistente_id' => 1,

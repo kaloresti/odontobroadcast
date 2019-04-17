@@ -39,6 +39,10 @@
                   </ion-avatar>
                   <ion-label>
                       {{paciente.nome}}
+                      <p>Celular {{paciente.celular}}</p>
+                      <p>Nascimento: {{paciente.data_nascimento}}</p>
+                      <p>Endereco: {{paciente.uf}} - {{paciente.cidade}} - {{paciente.bairro}} - {{paciente.logradouro}}</p>
+                      <p>Cadastrado em: {{paciente.data_cadastro}}</p>
                       <button (click)="abrirEdicao()" ion-button color="primary" icon-left full>
                         <ion-icon name="create"></ion-icon>  
                       </button>

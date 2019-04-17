@@ -7,12 +7,82 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>paciente_create</ion-title>
+    <ion-title> <ion-icon name="person"></ion-icon> Novo Paciente</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div class="form">
+    <ion-item>
+      <ion-input type="string" placeholder="Nome do paciente" [(ngModel)]="formRegister.nome"></ion-input>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Plano</ion-label>
+        <ion-select [(ngModel)]="formRegister.plano_id" cancelText="cancelar" okText="OK">
+          <ion-option *ngFor="let plano of planos" value="{{plano.id}}">{{plano.nome}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+        <ion-label>Data de nascimento</ion-label>
+      <ion-datetime  [(ngModel)]="formRegister.dt_nascimento"  displayFormat="YYYY/MM/DD" min="1910" max="2022" value=""></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="RG" [(ngModel)]="formRegister.rg"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="CPF" [(ngModel)]="formRegister.cpf"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="Celular" [(ngModel)]="formRegister.celular"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="CEP" [(ngModel)]="formRegister.cep"></ion-input>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>UF</ion-label>
+        <ion-select [(ngModel)]="formRegister.uf" cancelText="cancelar" okText="OK">
+            <ion-option value="N/A" selected="true">não escolhido</ion-option>
+          <ion-option value="PA">Pará</ion-option>
+          <ion-option value="SP">São Paulo</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item>
+      <ion-input type="string" placeholder="Cidade" [(ngModel)]="formRegister.cidade"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="Bairro" [(ngModel)]="formRegister.bairro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="Endereço" [(ngModel)]="formRegister.logradouro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="Número" [(ngModel)]="formRegister.numero"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="string" placeholder="Complemento" [(ngModel)]="formRegister.complemento"></ion-input>
+    </ion-item>  
+    <!-- <ion-item>
+      <ion-input type="string" [(ngModel)]="formRegister.user_id"></ion-input>
+    </ion-item>  -->
+    <button ion-button color="secondary" icon-left full large (click)="cadastrarPaciente()">
+        <ion-icon name="person"></ion-icon>
+        Cadastrar
+    </button>
+    <br> <br>
+    <!-- <button ion-button icon-left full>
+        <ion-icon name="logo-facebook"></ion-icon>
+          cadastrar com Facebook
+    </button>
+    <button ion-button color="danger" icon-left full>
+          <ion-icon name="mail"></ion-icon>
+          cadastrar com Google
+    </button> -->
+    <br> <br>
+  </div>
 </ion-content>

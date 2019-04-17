@@ -4,6 +4,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { UserProvider } from '../../providers/user/user';
+
+import { PacienteCreatePage } from '../../pages/paciente-create/paciente-create';
+
 /**
  * Generated class for the PacientePage page.
  *
@@ -74,5 +77,8 @@ export class PacientePage {
     
   }
 
-
+  openNovoPaciente()
+  {
+    this.navCtrl.push(PacienteCreatePage);
+  }
 }

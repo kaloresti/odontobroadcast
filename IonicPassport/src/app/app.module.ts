@@ -12,9 +12,11 @@ import { ListPage } from '../pages/list/list';
 import { RecoverPage } from '../pages/recover/recover';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { PacientePage } from '../pages/paciente/paciente';
+import { PacienteCreatePage } from '../pages/paciente-create/paciente-create';
 import { ConsultorioPage } from '../pages/consultorio/consultorio';
 import { ConsultorioCreatePage } from '../pages/consultorio-create/consultorio-create';
-
+import { AuxiliaresPage } from '../pages/auxiliares/auxiliares';
+import { AuxiliaresCreatePage } from '../pages/auxiliares-create/auxiliares-create';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
@@ -28,8 +30,11 @@ import { UserProvider } from '../providers/user/user';
     RecoverPage,
     AgendaPage,
     PacientePage,
+    PacienteCreatePage,
     ConsultorioPage,
-    ConsultorioCreatePage
+    ConsultorioCreatePage,
+    AuxiliaresPage,
+    AuxiliaresCreatePage
   ],
   imports: [
     BrowserModule,
@@ -46,8 +51,11 @@ import { UserProvider } from '../providers/user/user';
     RecoverPage,
     AgendaPage,
     PacientePage,
+    PacienteCreatePage,
     ConsultorioPage,
-    ConsultorioCreatePage
+    ConsultorioCreatePage,
+    AuxiliaresPage,
+    AuxiliaresCreatePage
   ],
   providers: [
     StatusBar,
