@@ -37,7 +37,24 @@
         "laravel": {
             "dont-discover": [
             ]
-        }
+        },
+        "heroku": {
+            "document-root": "web",
+            "index-document": "index.php",
+            "php-config": [
+                "short_open_tag=on",
+                "date.timezone=Europe/Vienna",
+                "newrelic.appname=dentalize"
+            ],
+            "engines": {
+                "php": "7.0",
+                "nginx": "1.4.*"
+            },
+            "compile": [
+                "echo $FOO"
+            ],
+            "newrelic": true
+}
     },
     "scripts": {
         "post-root-package-install": [
