@@ -71,6 +71,7 @@ export class AuthPage {
         }, 750);
       })
       .catch(err => {
+        console.log(err);
         this.loading.dismiss();
         let alert = this.alertCtrl.create({ title: 'Error', buttons: ['Ok'] });
         if ( err.status == 400 ) {

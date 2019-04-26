@@ -28,8 +28,8 @@ export class AuthProvider {
   {
     let request = {
       'grant_type': 'password',
-      'client_id': Service.passport.client_id,
-      'client_secret': Service.passport.client_secret,
+      'client_id': '1',
+      'client_secret': 'sgpvpVtUdR1UtOYEz0pKb4KkDfeGGQtGvC9mPWOw',
       'username': user.email,
       'password': user.password,
     }
